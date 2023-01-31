@@ -5,13 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Hero Hunter</title>
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
 <body>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>Favorite</li>
-        </ul>
-    </nav>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">     
+
+      <div class="navbar-header">
+        <a href="./home.html">
+          <img src="./images/marvel-logo-34281.png" alt="" style="height: 75px; width: 300px;">
+        </a>
+      </div>
+
+      <ul class="nav navbar-nav" style="padding:1%;">
+        <li><a href="#">Home&nbsp;&nbsp;</a></li>
+        <li style="color: whitesmoke; font-family: fantasy; font-size: xx-large; letter-spacing: 0.2em; text-shadow: 2px 2px red;">
+          Super Hero Hunting Begins</li>
+        <li><a href="#">&nbsp;&nbsp;Favorite</a></li>
+      </ul>
+
+      <form class="navbar-form navbar-right">
+        <div class="input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Find your Hero here">
+          <div class="input-group-btn">
+            <button class="btn btn-default btn-lg" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </nav>
+  <main></main>
 </body>
 </html>
