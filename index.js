@@ -6,7 +6,9 @@ async function getSearchData(){
     let input = document.getElementById('searchBox');
     console.log(input.value);
     let heroName = input.value;
-    url = `https://gateway.marvel.com:443/v1/public/characters?name=${heroName}&apikey=${apiKey}&hash=${hash}&ts=1`;
+    let list = document.getElementById('heroList');
+    list.innerHTML = '';
+    url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${heroName}&apikey=${apiKey}&hash=${hash}&ts=1`;
     console.log(url);
   await  fetch(url)
   .then((response) => response.json())
@@ -21,23 +23,21 @@ function showData(json){
   for( let hero of data.results){
     // console.log(hero);
     let heroCard = document.createElement('div');
-    heroCard.setAttribute("class","card");
+    heroCard.setAttribute("class","hero-box");
+    // heroCard.setAttribute("style","width: 18rem;");
 
     let heroImg = document.createElement('img');
     let path = hero.thumbnail.path +'.'+ hero.thumbnail.extension;
     heroImg.setAttribute("src",path);
-    heroImg.setAttribute("class","card-img-top");
+    heroImg.setAttribute("width","100%");
+    heroImg.setAttribute("height","100%");
     heroCard.appendChild(heroImg);
     // console.log(path);
-    let cardBody = document.createElement('div');
-    cardBody.setAttribute("class","card-body");
 
     let title = document.createElement('h3');
-    title.setAttribute("class","card-title");
     title.innerText=hero.name;
-    cardBody.appendChild(title);
+    heroCard.appendChild(title);
 
-    heroCard.appendChild(cardBody);
     // console.log(hero.name);
     list.appendChild(heroCard);
   }

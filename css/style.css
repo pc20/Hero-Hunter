@@ -1,0 +1,25 @@
+  .hero-group{
+    /* height: auto; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .hero-box{
+    width: 20%;
+    margin: 2.5%;
+    border-radius: 8px;
+    padding: 5px;
+    border: 1px solid #cccccc;
+    display: flex;
+    flex-direction: column;
+    transition: all linear 200ms;
+  }
+  .hero-box:hover{
+    transform: scale(1.1);
+    transition: all linear 200ms;
+    z-index: 1;
+    box-shadow: 1px 1px 10px rgba(0,0,0,.3);
+    cursor: grabbing;
+  }

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Super Hero Hunter</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="./index.js"></script>
@@ -13,50 +14,37 @@
 
 <body>
 
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">     
-
-      <div class="navbar-header">
-        <a href="./home.html">
-          <img src="./images/marvel-logo-34281.png" alt="" style="height: 75px; width: 300px;">
-        </a>
-      </div>
-
-      <ul class="nav navbar-nav" style="padding:1%;">
-        <li><a href="#">Home&nbsp;&nbsp;</a></li>
-        <li style="color: whitesmoke; font-family: fantasy; font-size: xx-large; letter-spacing: 0.2em; text-shadow: 2px 2px red;">
-          Super Hero Hunting Begins</li>
-        <li><a href="#">&nbsp;&nbsp;Favorite</a></li>
-      </ul>
-
-      <form class="navbar-form navbar-right"  method="GET" onsubmit="getSearchData()">
-        <div class="input-group input-group-lg">
-          <input type="text" class="form-control" id="searchBox" placeholder="Find your Hero here">
-          <div class="input-group-btn">
-            <button class="btn btn-default btn-lg" type="submit">
-              <i class="glyphicon glyphicon-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-
-    </div>
-  </nav>
+    <nav class="navbar navbar-inverse">
+      <div class="container-solid">     
   
-  <main>
-    <div class="d-flex flex-row justify-content-between flex-wrap" id="heroList">
-      
-      <!-- <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+        <div class="navbar-header">
+          <a href="./home.html">
+            <img src="./images/marvel-logo-34281.png" alt="" style="height: 75px; width: 275px;">
+          </a>
         </div>
-      </div> -->
-    
-    </div>
-  </main>
+  
+        <ul class="nav navbar-nav" style="padding:1%;">
+          <li><a href="#">Home&nbsp;&nbsp;</a></li>
+          <li style="color: whitesmoke; font-family: fantasy; font-size: xx-large; letter-spacing: 0.2em; text-shadow: 2px 2px red;">
+            Super Hero Hunting Begins</li>
+          <li><a href="#">&nbsp;&nbsp;Favorite</a></li>
+        </ul>
+  
+        <form class="navbar-form navbar-right"  method="GET">
+          <div class="input-group input-group-lg" style="margin-left: -10%;">
+            <input type="text" class="form-control" id="searchBox" placeholder="Find your Hero here" onkeypress="getSearchData()">
+            <div class="input-group-btn">
+              <button class="btn btn-default btn-lg" onclick="getSearchData()" type="submit">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+  
+      </div>
+    </nav>
 
+    <div class="container hero-group" id="heroList">
+    </div>
 </body>
 </html>
