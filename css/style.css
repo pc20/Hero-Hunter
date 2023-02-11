@@ -9,7 +9,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    width: 70%;
+    width: 72%;
   }
 
   .hero-box{
@@ -24,9 +24,43 @@
     transition: all linear 200ms;
   }
   .hero-box:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition: all linear 200ms;
     z-index: 1;
     box-shadow: 1px 1px 10px rgba(0,0,0,.3);
     cursor: grabbing;
+  }
+
+  .hero-info-box{
+    margin: 2.5%;
+    border-radius: 8px;
+    padding: 5px;
+    border: 2px solid whitesmoke;
+    display: inline-flex;
+    flex-direction: row;
+    color: white;
+    flex-wrap: wrap;
+  }
+
+  .img-about{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 1%;
+    margin-right: 2%;
+    margin-bottom: 0%;
+    text-align: justify;
+    text-justify: auto;
+    flex-wrap: wrap;
+  }
+
+  #comics{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: -13%;
+    margin-right: 2%;
+    flex-wrap: wrap;
   }
