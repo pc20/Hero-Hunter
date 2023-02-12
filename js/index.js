@@ -144,7 +144,12 @@ function addToFav(id){
   let favourites = JSON.parse(myLocalStorage.getItem("fav"));
   
   if(favourites){ //fav list already exist
-    favourites.push(id); 
+    if(favourites.includes(id)){
+      alert("hero already present in your Favourites")
+    }else{
+      favourites.push(id); 
+    }
+   
   }else{
     favourites = []; //create new list and append
     favourites.push(id);
