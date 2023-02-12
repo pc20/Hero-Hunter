@@ -45,7 +45,7 @@ function addHeroCard(json){
     
     let heroImg = document.createElement('img');
     let anchorTag = document.createElement('a');
-    anchorTag.setAttribute('href','home.html');
+    anchorTag.setAttribute('href','index.html');
    
     let path = hero.thumbnail.path +'.'+ hero.thumbnail.extension;
     heroImg.setAttribute("src",path);
