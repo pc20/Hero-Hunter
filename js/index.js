@@ -149,15 +149,17 @@ function addToFav(id){
       return;
     }else{
       favourites.push(id); 
+      alert('Hero successfully added to your Favourites');
+      myLocalStorage.setItem("fav",JSON.stringify(favourites));
     }
    
   }else{
     favourites = []; //create new list and append
     favourites.push(id);
+    alert('Hero successfully added to your Favourites');
+    myLocalStorage.setItem("fav",JSON.stringify(favourites));
   }
-  console.log(favourites);
-  myLocalStorage.setItem("fav",JSON.stringify(favourites));
-  alert('Hero successfully added to your Favourites');
+  // console.log(favourites);
 }
 
 function loadPage(){ // If we come back from Favorite Page this method will check HeroId and loads it
