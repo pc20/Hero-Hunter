@@ -42,13 +42,16 @@ function addHeroCard(json){
     heroCard.setAttribute("id",heroId);
     
     let heroImg = document.createElement('img');
+    let anchorTag = document.createElement('a');
+    anchorTag.setAttribute('href','home.html');
    
     let path = hero.thumbnail.path +'.'+ hero.thumbnail.extension;
     heroImg.setAttribute("src",path);
     heroImg.setAttribute("width","100%");
     heroImg.setAttribute("height","100%");
-   
-    heroCard.appendChild(heroImg);
+    heroImg.addEventListener("click",()=>{myLocalStorage.setItem("heroId",heroId)});
+    anchorTag.appendChild(heroImg);
+    heroCard.appendChild(anchorTag);
     // console.log(path);
 
     let title = document.createElement('h4');

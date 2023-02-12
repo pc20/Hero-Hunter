@@ -133,12 +133,9 @@ async function loadComics(comics){
   }
 }
 
-function addToFav(id,name,path){
+function addToFav(id){
   let favourites = JSON.parse(myLocalStorage.getItem("fav"));
-  // let heroMap = {};
-  // heroMap.id = id;
-  // heroMap.name = name;
-  // heroMap.path = path;
+  
   if(favourites){
     favourites.push(id);
   }else{
@@ -149,3 +146,14 @@ function addToFav(id,name,path){
   myLocalStorage.setItem("fav",JSON.stringify(favourites));
   alert('Hero successfully added to your Favourites');
 }
+
+function loadPage(){
+  let heroId = myLocalStorage.getItem("heroId");
+  if(heroId){
+    myLocalStorage.removeItem("heroId");
+    addHeroId(heroId);
+  }else{
+    getSearchData();
+  }
+}
+loadPage();
