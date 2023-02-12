@@ -145,7 +145,8 @@ function addToFav(id){
   
   if(favourites){ //fav list already exist
     if(favourites.includes(id)){
-      alert("hero already present in your Favourites")
+      alert("hero already present in your Favourites");
+      return;
     }else{
       favourites.push(id); 
     }
