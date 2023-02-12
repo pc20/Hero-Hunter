@@ -152,8 +152,17 @@ function loadPage(){
   if(heroId){
     myLocalStorage.removeItem("heroId");
     addHeroId(heroId);
-  }else{
-    getSearchData();
   }
 }
 loadPage();
+
+async function showCharacter(){
+  let urlQueryParameters = new URLSearchParams(window.location.search),
+  queryParameterName = urlQueryParameters.get("name");
+  console.log(queryParameterName);
+  url = `https://gateway.marvel.com:443/v1/public/characters?name=${queryParameterName}&apikey=${apiKey}&hash=${hash}&ts=1`;
+      
+      await  fetch(url)
+            .then((response) => response.json())
+            .then((data) => showData(data));
+}
