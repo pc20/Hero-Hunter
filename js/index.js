@@ -7,7 +7,7 @@ let myLocalStorage = window.localStorage;
 async function getSearchData(){
     let input = document.getElementById('searchBox');
     let heroName = input.value;
-    // console.log(heroName);
+    console.log(heroName);
     let list = document.getElementById('heroList');
     if(heroName.length<2){
       list.innerHTML = '';
@@ -48,6 +48,12 @@ function showData(json){
     let title = document.createElement('h4');
     title.innerText=hero.name;
     heroCard.appendChild(title);
+
+    let favButton = document.createElement('button');
+    favButton.setAttribute('class','btn btn-primary end');
+    favButton.innerHTML='Add To Favourites <span class="glyphicon glyphicon-heart"></span>';
+    favButton.addEventListener("click",()=>{addToFav(hero.id,hero.name,path)});
+    heroCard.appendChild(favButton);
 
     // console.log(hero.name);
     list.appendChild(heroCard);
@@ -125,4 +131,21 @@ async function loadComics(comics){
       comicsDiv.appendChild(comicCard);
     }
   }
+}
+
+function addToFav(id,name,path){
+  let favourites = JSON.parse(myLocalStorage.getItem("fav"));
+  // let heroMap = {};
+  // heroMap.id = id;
+  // heroMap.name = name;
+  // heroMap.path = path;
+  if(favourites){
+    favourites.push(id);
+  }else{
+    favourites = [];
+    favourites.push(id);
+  }
+  console.log(favourites);
+  myLocalStorage.setItem("fav",JSON.stringify(favourites));
+  alert('Hero successfully added to your Favourites');
 }

@@ -64,3 +64,10 @@
     margin-right: 2%;
     flex-wrap: wrap;
   }
+
+  .end{
+    /* position: absolute; */
+    margin-top: auto;
+    white-space: nowrap;
+    overflow: hidden;
+  }
