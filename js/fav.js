@@ -3,7 +3,7 @@ let myLocalStorage = window.localStorage;
 let apiKey = '00bcb4c14b2667eba2a78c1f12db06c0';
 let hash = 'd31064b0c287880432d76c1878bc34b7';
 
-
+//  check localStorage and iterate over each Hero Id
 function loadFavs(){
     let list = document.getElementById('heroList');
     let favourites = JSON.parse(myLocalStorage.getItem("fav"));
@@ -12,7 +12,7 @@ function loadFavs(){
         for (let i = 0 ; i<favourites.length; i++) {
             addHeroId(favourites[i]);
           }
-    }else{
+    }else{ // if no hero Id is present
         list.innerHTML =   `
             <div style="margin:auto; color:white">
                 <h2> No hero available in your list. Please add some hero</h2>
@@ -22,6 +22,7 @@ function loadFavs(){
 
 }
 
+//  fetch content of each Hero Id
 async function addHeroId(heroId){
     console.log(heroId);
     let url = `https://gateway.marvel.com:443/v1/public/characters/${heroId}?apikey=${apiKey}&hash=${hash}&ts=1`;
@@ -31,6 +32,7 @@ async function addHeroId(heroId){
             .then((data) => addHeroCard(data));
   }
 
+//    loads Hero cards
 function addHeroCard(json){
     let data =  json.data;
     let hero = data.results[0];
@@ -69,6 +71,7 @@ function addHeroCard(json){
     list.appendChild(heroCard);
 }
 
+// remove the hero Id from local Storage and reset the Hero cards
 function removeFav(event,id){
     let favourites = JSON.parse(myLocalStorage.getItem("fav"));
     let idx = favourites.indexOf(id);
@@ -79,7 +82,7 @@ function removeFav(event,id){
     let heroCard = document.getElementById(id);
     let heroList = heroCard.parentNode;
     heroList.removeChild(heroCard);
-    if(heroList.childNodes.length==0){
+    if(heroList.childNodes.length==0){ // If no heroId is present 
         heroList.innerHTML =   `
             <div style="margin:auto; color:white">
                 <h2> No hero available in your list. Please add some hero</h2>

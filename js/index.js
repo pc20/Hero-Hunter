@@ -1,9 +1,10 @@
-
+// private Key 
 let apiKey = '00bcb4c14b2667eba2a78c1f12db06c0';
 let hash = 'd31064b0c287880432d76c1878bc34b7';
 
 let myLocalStorage = window.localStorage;
 
+// main function to call API for text present in Search Box
 async function getSearchData(){
     let input = document.getElementById('searchBox');
     let heroName = input.value;
@@ -12,7 +13,7 @@ async function getSearchData(){
     if(heroName.length<2){
       list.innerHTML = '';
     }else{
-      list.innerHTML = '';
+      list.innerHTML = ''; // url will fetch all hero whose name starts with input
       url = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${heroName}&apikey=${apiKey}&hash=${hash}&ts=1`;
       console.log(url);
       await  fetch(url)
@@ -21,21 +22,22 @@ async function getSearchData(){
     }
 }
 
+// once Api respond load data into Html tags
 function showData(json){
   let data =  json.data;
-  // console.log(data);
+ 
   let list = document.getElementById('heroList');
   // console.log(data.results);
-  for( let hero of data.results){
+  for( let hero of data.results){ //Iterate over list of heros
     console.log(hero);
     let heroCard = document.createElement('div');
     heroCard.setAttribute("class","hero-box");
     heroCard.setAttribute("id",hero.id)
-    // heroCard.setAttribute("style","width: 18rem;");
+
 
     let heroImg = document.createElement('img');
     let anchorTag = document.createElement('a');
-    // anchorTag.setAttribute('href','hero.html');
+   
     let path = hero.thumbnail.path +'.'+ hero.thumbnail.extension;
     heroImg.setAttribute("src",path);
     heroImg.setAttribute("width","100%");
@@ -52,14 +54,15 @@ function showData(json){
     let favButton = document.createElement('button');
     favButton.setAttribute('class','btn btn-primary end');
     favButton.innerHTML='Add To Favourites <span class="glyphicon glyphicon-heart"></span>';
-    favButton.addEventListener("click",()=>{addToFav(hero.id,hero.name,path)});
+    favButton.addEventListener("click",()=>{addToFav(hero.id,hero.name,path)}); //add to Fav event listener
     heroCard.appendChild(favButton);
 
     // console.log(hero.name);
-    list.appendChild(heroCard);
+    list.appendChild(heroCard); // hero card have 3 things 1. img 2. title 3. add to fav button
   }
 }
 
+//  method to fetch full info of Hero
 async function addHeroId(heroId){
   console.log(heroId);
   let url = `https://gateway.marvel.com:443/v1/public/characters/${heroId}?apikey=${apiKey}&hash=${hash}&ts=1`;
@@ -69,6 +72,7 @@ async function addHeroId(heroId){
           .then((data) => showHeroInfo(data));
 }
 
+// load All hero Information
 async function showHeroInfo(json){
   let hero = json.data.results[0];
   // console.log(hero);
@@ -108,16 +112,18 @@ async function showHeroInfo(json){
               </div>
             </div>
   `;
+  //  fetch comics for Hero
   let comicUrl = `https://gateway.marvel.com:443/v1/public/characters/${hero.id}/comics?apikey=${apiKey}&hash=${hash}&ts=1`;
   await  fetch(comicUrl)
   .then((response) => response.json())
   .then((data) => loadComics(data.data.results));
 }
 
-async function loadComics(comics){
+// load comics into HTML card
+function loadComics(comics){  
   console.log(comics);
   let comicsDiv = document.getElementById("comics");
-  for(let i = 0; i<6; i++){
+  for(let i = 0; i<6; i++){  // populating 1st six comics only
     let comic = comics[i];
     if(comic){
       console.log(comic);
@@ -133,13 +139,14 @@ async function loadComics(comics){
   }
 }
 
+//  adding hero id to local Storage
 function addToFav(id){
   let favourites = JSON.parse(myLocalStorage.getItem("fav"));
   
-  if(favourites){
-    favourites.push(id);
+  if(favourites){ //fav list already exist
+    favourites.push(id); 
   }else{
-    favourites = [];
+    favourites = []; //create new list and append
     favourites.push(id);
   }
   console.log(favourites);
@@ -147,7 +154,7 @@ function addToFav(id){
   alert('Hero successfully added to your Favourites');
 }
 
-function loadPage(){
+function loadPage(){ // If we come back from Favorite Page this method will check HeroId and loads it
   let heroId = myLocalStorage.getItem("heroId");
   if(heroId){
     myLocalStorage.removeItem("heroId");
@@ -156,7 +163,7 @@ function loadPage(){
 }
 loadPage();
 
-async function showCharacter(){
+async function showCharacter(){ // on submitting the form to fetch exactly 1 hero
   let urlQueryParameters = new URLSearchParams(window.location.search),
   queryParameterName = urlQueryParameters.get("name");
   console.log(queryParameterName);
